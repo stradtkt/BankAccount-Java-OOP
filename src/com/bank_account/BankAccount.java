@@ -54,26 +54,51 @@ public class BankAccount {
     // Methods
 
     public void depositChecking(double checkingBal) {
-
+        this.setCheckingBal(checkingBal);
+        totalAmountInBank += checkingBal;
     }
 
     public void depositSavings(double savingsBal) {
-
+        this.setSavingsBal(savingsBal);
+        totalAmountInBank += savingsBal;
     }
 
-    public void withdrawCheckings(double checkingBal) {
-
+    public void withdrawCheckings(int amount) {
+        if(Double.valueOf(amount) > getCheckingBal()) {
+            System.out.println("You need more money in your account to pull out that much!");
+        } else {
+            setCheckingBal(getCheckingBal() - Double.valueOf(amount));
+        }
     }
 
-    public void withdrawSavings(double savingsBal) {
-
+    public void withdrawSavings(int amount, double savingsBal) {
+        if(Double.valueOf(amount) > getSavingsBal()) {
+            System.out.println("You need more money in your account to pull out that much!");
+        } else {
+            setSavingsBal(getSavingsBal() - Double.valueOf(amount));
+        }
     }
 
-    public void transferIntoCheckings(double checkingBal, double savingsBal) {
-
+    public void transferIntoCheckings(int amount) {
+        if(Double.valueOf(amount) > getSavingsBal()) {
+            System.out.println("I am sorry you do not have enough to transfer that much");
+        } else {
+            setSavingsBal(getSavingsBal() - Double.valueOf(amount));
+            setCheckingBal(getCheckingBal() + Double.valueOf(amount));
+        }
     }
 
-    public void transferIntoSavings(double checkingBal, double savingsBal) {
+    public void transferIntoSavings(int amount) {
+        if(Double.valueOf(amount) > getCheckingBal()) {
+            System.out.println("I am sorry you do not have enough to transfer that much");
+        } else {
+            setCheckingBal(getCheckingBal() - Double.valueOf(amount));
+            setSavingsBal(getSavingsBal() + Double.valueOf(amount));
+        }
+    }
 
+    public double total() {
+        totalAmountInBank = savingsBal + checkingBal;
+        return totalAmountInBank;
     }
 }
