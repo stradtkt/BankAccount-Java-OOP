@@ -43,4 +43,37 @@ public class BankAccount {
     // Setters
 
 
+    public void setCheckingBal(double checkingBal) {
+        this.checkingBal = checkingBal;
+    }
+
+    public void setSavingsBal(double savingsBal) {
+        this.savingsBal = savingsBal;
+    }
+
+    // Methods
+
+    public void depositChecking(double checkingBal) {
+
+    }
+
+    public void depositSavings(double savingsBal) {
+
+    }
+
+    public void withdrawCheckings(double checkingBal) {
+
+    }
+
+    public void withdrawSavings(double savingsBal) {
+
+    }
+
+    public void transferIntoCheckings(double checkingBal, double savingsBal) {
+
+    }
+
+    public void transferIntoSavings(double checkingBal, double savingsBal) {
+
+    }
 }
