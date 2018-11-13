@@ -31,13 +31,14 @@ public class BankAccount {
     // Getters
 
     public String getAccountNumber() {
+        System.out.println("Account number = " + accountNumber);
         return accountNumber;
     }
     public double getCheckingBal() {
-        return this.checkingBal;
+        return checkingBal;
     }
     public double getSavingsBal() {
-        return this.savingsBal;
+        return savingsBal;
     }
 
     // Setters
@@ -53,52 +54,55 @@ public class BankAccount {
 
     // Methods
 
-    public void depositChecking(double checkingBal) {
-        this.setCheckingBal(checkingBal);
-        totalAmountInBank += checkingBal;
+    public void depositChecking(double amount) {
+       checkingBal += Double.valueOf(amount);
+        System.out.println("You have deposited " + amount + " in your checking account");
     }
 
-    public void depositSavings(double savingsBal) {
-        this.setSavingsBal(savingsBal);
-        totalAmountInBank += savingsBal;
+    public void depositSavings(double amount) {
+        savingsBal += Double.valueOf(amount);
+        System.out.println("You have deposited " + amount + " in your savings account");
     }
 
-    public void withdrawCheckings(int amount) {
+    public void withdrawCheckings(double amount) {
         if(Double.valueOf(amount) > getCheckingBal()) {
             System.out.println("You need more money in your account to pull out that much!");
         } else {
-            setCheckingBal(getCheckingBal() - Double.valueOf(amount));
+            checkingBal -= Double.valueOf(amount);
+            System.out.println("You have withdrew " + amount + " from your checkings.");
         }
     }
 
-    public void withdrawSavings(int amount, double savingsBal) {
+    public void withdrawSavings(double amount) {
         if(Double.valueOf(amount) > getSavingsBal()) {
             System.out.println("You need more money in your account to pull out that much!");
         } else {
-            setSavingsBal(getSavingsBal() - Double.valueOf(amount));
+            savingsBal -= Double.valueOf(amount);
+            System.out.println("You have withdrew " + amount + " from your savings.");
         }
     }
 
-    public void transferIntoCheckings(int amount) {
+    public void transferIntoCheckings(double amount) {
         if(Double.valueOf(amount) > getSavingsBal()) {
             System.out.println("I am sorry you do not have enough to transfer that much");
         } else {
-            setSavingsBal(getSavingsBal() - Double.valueOf(amount));
-            setCheckingBal(getCheckingBal() + Double.valueOf(amount));
+            savingsBal -= amount;
+            checkingBal += amount;
         }
     }
 
-    public void transferIntoSavings(int amount) {
+    public void transferIntoSavings(double amount) {
         if(Double.valueOf(amount) > getCheckingBal()) {
             System.out.println("I am sorry you do not have enough to transfer that much");
         } else {
-            setCheckingBal(getCheckingBal() - Double.valueOf(amount));
-            setSavingsBal(getSavingsBal() + Double.valueOf(amount));
+            checkingBal -= amount;
+            savingsBal += amount;
         }
     }
 
     public double total() {
         totalAmountInBank = savingsBal + checkingBal;
+        System.out.println("Savings account = " + String.format("%.2f", savingsBal) + "\nChecking account = " + String.format("%.2f", checkingBal) + "\nTotal = " + String.format("%.2f", totalAmountInBank));
         return totalAmountInBank;
     }
 }
